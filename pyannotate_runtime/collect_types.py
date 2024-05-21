@@ -90,10 +90,6 @@ class UnknownType(object):
     pass
 
 
-class NoReturnType(object):
-    pass
-
-
 class TypeWasIncomparable(object):
     pass
 
@@ -964,7 +960,7 @@ def _trace_dispatch(frame, event, arg):
                     # This branch is also taken when returning from a generator.
                     # TODO: returning non-trivial values from generators, per PEP 380;
                     # and async def / await stuff.
-                    t = NoReturnType
+                    t = _NONE_TYPE
                 _task_queue.put(KeyAndReturn(function_key, t))
     else:
         sampling_counters[key] = None  # We're not interested in this function.
